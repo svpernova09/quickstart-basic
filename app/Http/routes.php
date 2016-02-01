@@ -32,6 +32,7 @@ Route::get('/', function () {
 Route::post('/task', function (Request $request) {
 	$validator = Validator::make($request->all(), [
 		'name' => 'required|max:255',
+		'user_id' => 'required|exists:users,id'
 	]);
 
 	if ($validator->fails()) {
@@ -42,6 +43,7 @@ Route::post('/task', function (Request $request) {
 
 	$task = new Task;
 	$task->name = $request->name;
+	$task->user_id = $request->user_id;
 	$task->save();
 
 	return redirect('/');

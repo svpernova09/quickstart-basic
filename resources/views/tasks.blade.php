@@ -25,6 +25,18 @@
 							</div>
 						</div>
 
+						<!-- Task User -->
+						<div class="form-group">
+							<label for="task-user_id" style="float:left;padding: 6px 12px 2px 70px;">Assign to User</label>
+
+							<div class="col-sm-6">
+								<select name="user_id" id="task-user_id" class="form-control">
+									@foreach ($users as $user)
+										<option value="{{ $user->id }}">{{ $user->name }}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
 						<!-- Add Task Button -->
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-6">
@@ -91,12 +103,14 @@
 						<table class="table table-striped task-table">
 							<thead>
 								<th>Task</th>
+								<th>Assigned To</th>
 								<th>&nbsp;</th>
 							</thead>
 							<tbody>
 								@foreach ($tasks as $task)
 									<tr>
 										<td class="table-text"><div>{{ $task->name }}</div></td>
+										<td class="table-text"><div>{{ $task->user->name }}</div></td>
 
 										<!-- Task Delete Button -->
 										<td>
@@ -128,6 +142,7 @@
 								<thead>
 								<th>Name</th>
 								<th>Email</th>
+								<th>Tasks Assigned</th>
 								<th>&nbsp;</th>
 								</thead>
 								<tbody>
@@ -135,6 +150,7 @@
 									<tr>
 										<td class="table-text"><div>{{ $user->name }}</div></td>
 										<td class="table-text"><div>{{ $user->email }}</div></td>
+										<td class="table-text"><div>{{ count($user->tasks) }}</div></td>
 
 										<!-- User Delete Button -->
 										<td>
