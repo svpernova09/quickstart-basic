@@ -26,6 +26,11 @@ Route::get('/', function () {
 
 
 /**
+ * Task Index
+ */
+Route::get('/task', ['as' => 'task.index', 'uses' => 'TaskController@index']);
+
+/**
  * Add New Task
  */
 Route::post('/task', ['as' => 'task.create', 'uses' => 'TaskController@create']);
@@ -34,6 +39,11 @@ Route::post('/task', ['as' => 'task.create', 'uses' => 'TaskController@create'])
  * Delete Task
  */
 Route::delete('/task/{id}', ['as' => 'task.destroy', 'uses' => 'TaskController@destroy']);
+
+/**
+ * Task Index
+ */
+Route::get('/user', ['as' => 'user.index', 'uses' => 'UserController@index']);
 
 /**
  * Add New User

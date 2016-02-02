@@ -33,7 +33,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = $this->tasks->all();
+
+        return view('tasks-index')->with('tasks', $tasks);
     }
 
     /**

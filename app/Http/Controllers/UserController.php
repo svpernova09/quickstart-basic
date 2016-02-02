@@ -33,7 +33,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = $this->users->all();
+
+        return view('users-index')->with('users', $users);
     }
 
     /**
