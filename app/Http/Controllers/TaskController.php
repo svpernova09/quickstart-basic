@@ -11,6 +11,22 @@ use App\Task;
 class TaskController extends Controller
 {
     /**
+     * The task model instance.
+     *
+     * @var Task
+     */
+    protected $tasks;
+
+    /**
+     * TaskController constructor.
+     * @param Task $tasks
+     */
+    public function __construct(Task $tasks)
+    {
+        $this->tasks = $tasks;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -99,7 +115,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        Task::findOrFail($id)->delete();
+        $this->tasks->findOrFail($id)->delete();
 
         return redirect('/');
     }

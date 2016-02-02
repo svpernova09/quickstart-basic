@@ -11,6 +11,22 @@ use App\User;
 class UserController extends Controller
 {
     /**
+     * The User model instance.
+     *
+     * @var User
+     */
+    protected $users;
+
+    /**
+     * UserController constructor.
+     * @param User $users
+     */
+    public function __construct(User $users)
+    {
+        $this->users = $users;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -99,7 +115,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::findOrFail($id)->delete();
+        $this->users->findOrFail($id)->delete();
 
         return redirect('/');
     }
