@@ -13,7 +13,6 @@
 
 use App\Task;
 use App\User;
-use Illuminate\Http\Request;
 
 /**
  * Show Task Dashboard
@@ -29,64 +28,19 @@ Route::get('/', function () {
 /**
  * Add New Task
  */
-Route::post('/task', function (Request $request) {
-	$validator = Validator::make($request->all(), [
-		'name' => 'required|max:255',
-		'user_id' => 'required|exists:users,id'
-	]);
-
-	if ($validator->fails()) {
-		return redirect('/')
-			->withInput()
-			->withErrors($validator);
-	}
-
-	$task = new Task;
-	$task->name = $request->name;
-	$task->user_id = $request->user_id;
-	$task->save();
-
-	return redirect('/');
-});
-
+Route::post('/task', ['as' => 'task.create', 'uses' => 'TaskController@create']);
 
 /**
  * Delete Task
  */
-Route::delete('/task/{id}', function ($id) {
-	Task::findOrFail($id)->delete();
-
-	return redirect('/');
-});
+Route::delete('/task/{id}', ['as' => 'task.destroy', 'uses' => 'TaskController@destroy']);
 
 /**
  * Add New User
  */
-Route::post('/user', function (Request $request) {
-	$validator = Validator::make($request->all(), [
-		'name' => 'required|max:255',
-		'email' => 'required|email',
-	]);
-
-	if ($validator->fails()) {
-		return redirect('/')
-			->withInput()
-			->withErrors($validator);
-	}
-
-	$user = new User;
-	$user->name = $request->name;
-	$user->email = $request->email;
-	$user->save();
-
-	return redirect('/');
-});
+Route::post('/user', ['as' => 'user.create', 'uses' => 'UserController@create']);
 
 /**
  * Delete User
  */
-Route::delete('/user/{id}', function ($id) {
-	User::findOrFail($id)->delete();
-
-	return redirect('/');
-});
+Route::delete('/user/{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
