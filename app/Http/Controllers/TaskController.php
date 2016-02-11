@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\TaskStoreRequest;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Task;
+use App\User;
 
 class TaskController extends Controller
 {
@@ -18,12 +21,21 @@ class TaskController extends Controller
     protected $tasks;
 
     /**
+     * The user model instance.
+     *
+     * @var User
+     */
+    protected $users;
+
+    /**
      * TaskController constructor.
      * @param Task $tasks
+     * @param User $users
      */
-    public function __construct(Task $tasks)
+    public function __construct(Task $tasks, User $users)
     {
         $this->tasks = $tasks;
+        $this->users = $users;
     }
 
     /**
@@ -94,19 +106,30 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = $this->tasks->find($id);
+        $users = $this->users->all();
+
+        return view('tasks-edit')->with('task', $task)->with('users', $users);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  TaskStoreRequest $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TaskStoreRequest $request, $id)
     {
-        //
+        $input = Input::all();
+
+        $task = $this->tasks->find($id);
+
+        $task->name = $input['name'];
+        $task->user_id = $input['user_id'];
+        $task->save();
+
+        return redirect()->route('task.index');
     }
 
     /**

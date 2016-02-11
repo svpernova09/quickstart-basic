@@ -11,12 +11,20 @@
                 <th>Task</th>
                 <th>Assigned To</th>
                 <th>&nbsp;</th>
+                <th>&nbsp;</th>
                 </thead>
                 <tbody>
                 @foreach ($tasks as $task)
                     <tr>
                         <td class="table-text"><div>{{ $task->name }}</div></td>
                         <td class="table-text"><div>{{ $task->user->name }}</div></td>
+
+                        <!-- Task Edit Button -->
+                        <td>
+                            <a href="/task/{{ $task->id }}/edit" class="btn btn-warning">
+                                <i class="fa fa-pencil"></i> Edit
+                            </a>
+                        </td>
 
                         <!-- Task Delete Button -->
                         <td>

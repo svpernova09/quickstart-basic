@@ -31,6 +31,16 @@ Route::get('/', function () {
 Route::get('/task', ['as' => 'task.index', 'uses' => 'TaskController@index']);
 
 /**
+ * Task Edit
+ */
+Route::get('/task/{id}/edit', ['as' => 'task.edit', 'uses' => 'TaskController@edit']);
+
+/**
+ * Task Update
+ */
+Route::post('/task/{id}', ['as' => 'task.update', 'uses' => 'TaskController@update']);
+
+/**
  * Add New Task
  */
 Route::post('/task', ['as' => 'task.create', 'uses' => 'TaskController@create']);
