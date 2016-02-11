@@ -97,9 +97,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->users->find($id);
-        $users = $this->users->all();
 
-        return view('users-edit')->with('user', $user)->with('users', $users);
+        return view('users-edit')
+            ->with('user', $user);
     }
 
     /**
