@@ -2,7 +2,7 @@
 <form action="/user/{{ $user->id }}/" method="POST" class="form-horizontal">
     {{ csrf_field() }}
 
-            <!-- User Name -->
+    <!-- User Name -->
     <div class="form-group">
         <label for="user-name" class="col-sm-3 control-label">User Name</label>
 
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <!-- User Name -->
+    <!-- User Email -->
     <div class="form-group">
         <label for="user-name" class="col-sm-3 control-label">User Email</label>
 
