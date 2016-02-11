@@ -51,9 +51,19 @@ Route::post('/task', ['as' => 'task.create', 'uses' => 'TaskController@create'])
 Route::delete('/task/{id}', ['as' => 'task.destroy', 'uses' => 'TaskController@destroy']);
 
 /**
- * Task Index
+ * User Index
  */
 Route::get('/user', ['as' => 'user.index', 'uses' => 'UserController@index']);
+
+/**
+ * User Edit
+ */
+Route::get('/user/{id}/edit', ['as' => 'user.edit', 'uses' => 'UserController@edit']);
+
+/**
+ * User Update
+ */
+Route::post('/user/{id}', ['as' => 'user.update', 'uses' => 'UserController@update']);
 
 /**
  * Add New User

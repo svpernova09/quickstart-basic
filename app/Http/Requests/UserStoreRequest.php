@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class TaskStoreRequest extends Request
+class UserStoreRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class TaskStoreRequest extends Request
     {
         return [
             'name' => 'required|max:255',
-            'user_id' => 'required|exists:users,id'
+            'email' => 'required|email',
         ];
     }
 }

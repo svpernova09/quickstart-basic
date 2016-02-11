@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UserStoreRequest;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -94,19 +96,30 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->users->find($id);
+        $users = $this->users->all();
+
+        return view('users-edit')->with('user', $user)->with('users', $users);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserStoreRequest $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserStoreRequest $request, $id)
     {
-        //
+        $input = Input::all();
+
+        $user = $this->users->find($id);
+
+        $user->name = $input['name'];
+        $user->email = $input['email'];
+        $user->save();
+
+        return redirect()->route('user.index');
     }
 
     /**

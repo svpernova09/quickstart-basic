@@ -12,6 +12,7 @@
                 <th>Email</th>
                 <th>Tasks Assigned</th>
                 <th>&nbsp;</th>
+                <th>&nbsp;</th>
                 </thead>
                 <tbody>
                 @foreach ($users as $user)
@@ -19,6 +20,13 @@
                         <td class="table-text"><div>{{ $user->name }}</div></td>
                         <td class="table-text"><div>{{ $user->email }}</div></td>
                         <td class="table-text"><div>{{ count($user->tasks) }}</div></td>
+
+                        <!-- User Edit Button -->
+                        <td>
+                            <a href="/user/{{ $user->id }}/edit" class="btn btn-warning">
+                                <i class="fa fa-pencil"></i> Edit
+                            </a>
+                        </td>
 
                         <!-- User Delete Button -->
                         <td>
