@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\Inspire::class,
         \App\Console\Commands\HelloCommand::class,
+        \App\Console\Commands\ListTasksCommand::class,
+        \App\Console\Commands\ListUsersCommand::class,
     ];
 
     /**
