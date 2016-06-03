@@ -24,7 +24,7 @@ class AddUserIdFieldToTaskTable extends Migration
      */
     public function down()
     {
-        Schema::dropCol('tasks', function ($table) {
+        Schema::table('tasks', function ($table) {
             $table->dropColumn('user_id');
         });
     }
